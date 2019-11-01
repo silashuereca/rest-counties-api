@@ -5,7 +5,7 @@ const customStyles = {
 	control: styles => ({
 		// none of react-select's styles are passed to <Control />
 		...styles,
-		width: 300,
+		width: 225,
 		backgroundColor: 'white',
 		color: '#fff',
 		border: 'none',
@@ -28,7 +28,7 @@ function SearchBar(props) {
 					<div>
 						<input
 							onChange={props.search}
-							style={{ backgroundColor: 'hsl(209, 23%, 22%)' }}
+							style={{ backgroundColor: `${props.backgroundColor}`, color: `${props.color}` }}
 							type="text"
 							placeholder="Search for a country..."
 						/>

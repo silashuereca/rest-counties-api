@@ -2,10 +2,16 @@ import React from 'react';
 
 function SideCard(props) {
 	return (
-		<div className="side-card-container" style={{ right: props.openAndClose }}>
+		<div
+			className="side-card-container"
+			style={{ right: props.openAndClose, backgroundColor: `${props.backgroundColor}` }}
+		>
 			<div className="back-button-container">
 				{/* closing the card to view home screen */}
-				<button onClick={props.closeCard}>
+				<button
+					onClick={props.closeCard}
+					style={{ color: `${props.color}`, backgroundColor: `${props.backButtonColor}` }}
+				>
 					<span className="arrow">&#8592;</span> Back
 				</button>
 			</div>
@@ -18,37 +24,45 @@ function SideCard(props) {
 				<div className="side-card">
 					<div className="country-info-container">
 						<div className="side-card-title">
-							<h2>{props.data.name}</h2>
+							<h2 style={{ color: `${props.color}` }}>{props.data.name}</h2>
 						</div>
 						<div className="side-card-info-container">
 							<div className="native-name-container">
-								<p>
-									Native Name: <span>{props.data.nativeName}</span>
+								<p style={{ color: `${props.color}` }}>
+									Native Name:{' '}
+									<span style={{ color: `${props.color}` }}>{props.data.nativeName}</span>
 								</p>
-								<p>
-									Population: <span>{parseInt(props.data.population).toLocaleString()}</span>
+								<p style={{ color: `${props.color}` }}>
+									Population:{' '}
+									<span style={{ color: `${props.color}` }}>
+										{parseInt(props.data.population).toLocaleString()}
+									</span>
 								</p>
-								<p>
-									Region: <span>{props.data.region}</span>
+								<p style={{ color: `${props.color}` }}>
+									Region: <span style={{ color: `${props.color}` }}>{props.data.region}</span>
 								</p>
-								<p>
-									Sub Region: <span>{props.data.subregion}</span>
+								<p style={{ color: `${props.color}` }}>
+									Sub Region: <span style={{ color: `${props.color}` }}>{props.data.subregion}</span>
 								</p>
-								<p>
-									Capital: <span>{props.data.capital}</span>
+								<p style={{ color: `${props.color}` }}>
+									Capital: <span style={{ color: `${props.color}` }}>{props.data.capital}</span>
 								</p>
 							</div>
-							<div className="top-level-container">
-								<p>
-									Top Level Domain: <span>{props.data.topLevelDomain}</span>
+							<div className="top-level-container" style={{ color: `${props.color}` }}>
+								<p style={{ color: `${props.color}` }}>
+									Top Level Domain:{' '}
+									<span style={{ color: `${props.color}` }}>{props.data.topLevelDomain}</span>
 								</p>
-								<p>
-									Numeric Code: <span>{props.data.numericCode}</span>
+								<p style={{ color: `${props.color}` }}>
+									Numeric Code:{' '}
+									<span style={{ color: `${props.color}` }}>{props.data.numericCode}</span>
 								</p>
-								<p>Timezones: {props.data.timezones}</p>
-								<p>
+								<p style={{ color: `${props.color}` }}>Timezones: {props.data.timezones}</p>
+								<p style={{ color: `${props.color}` }}>
 									Borders:{' '}
-									<span>{props.data.borders == null ? 'N/A' : props.data.borders + ' '}</span>
+									<span style={{ color: `${props.color}` }}>
+										{props.data.borders == null ? 'N/A' : props.data.borders + ' '}
+									</span>
 								</p>
 							</div>
 						</div>

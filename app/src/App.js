@@ -21,6 +21,7 @@ class App extends Component {
 		searchInput: '',
 		cardData: [],
 		openAndClose: true,
+		darkMode: true,
 	};
 
 	componentDidMount() {
@@ -29,6 +30,15 @@ class App extends Component {
 			.then(data => {
 				this.setState({ receiveData: data });
 			});
+	}
+
+	//updating the body background color based on darkMode boolian
+	componentDidUpdate() {
+		let body = document.body;
+
+		this.state.darkMode === true
+			? (body.style.backgroundColor = 'hsl(207, 26%, 17%)')
+			: (body.style.backgroundColor = 'hsl(0, 0%, 90%)');
 	}
 
 	//handle change from select drop down box
@@ -63,7 +73,6 @@ class App extends Component {
 			cardData: data,
 			openAndClose: false,
 		});
-		console.log(data.name);
 	};
 
 	//slide card back out when clicked
@@ -73,22 +82,49 @@ class App extends Component {
 		});
 	};
 
+	//switch dark mode
+	handleDarkMode = () => {
+		if (this.state.darkMode === true) {
+			return this.setState({
+				darkMode: false,
+			});
+		} else {
+			this.setState({
+				darkMode: true,
+			});
+		}
+	};
+
 	render() {
-		console.log(this.state.receiveData);
 		return (
 			<div className="App">
-				<Header />
+				<Header
+					handleDarkMode={this.handleDarkMode}
+					backgroundColor={this.state.darkMode === true ? 'hsl(209, 23%, 22%)' : 'hsl(0, 0%, 100%)'}
+					color={this.state.darkMode === true ? 'white' : 'black'}
+					darkOrLight={this.state.darkMode === true ? 'Light Mode' : 'Dark Mode'}
+				/>
 				<SearchBar
 					data={this.filterItems()}
 					search={this.handleSearchInput}
 					options={this.state.options}
 					handleChange={this.changeRegion}
+					backgroundColor={this.state.darkMode === true ? 'hsl(209, 23%, 22%)' : 'hsl(0, 0%, 100%)'}
+					color={this.state.darkMode === true ? 'white' : 'black'}
 				/>
-				<Card items={this.filterItems()} openCard={this.openCard} />
+				<Card
+					items={this.filterItems()}
+					openCard={this.openCard}
+					backgroundColor={this.state.darkMode === true ? 'hsl(209, 23%, 22%)' : 'hsl(0, 0%, 100%)'}
+					color={this.state.darkMode === true ? 'white' : 'black'}
+				/>
 				<SideCard
 					closeCard={this.closeCard}
 					data={this.state.cardData}
-					openAndClose={this.state.openAndClose == true ? '-2000px' : '0px'}
+					openAndClose={this.state.openAndClose === true ? '-2000px' : '0px'}
+					backgroundColor={this.state.darkMode === true ? 'hsl(209, 23%, 22%)' : 'hsl(0, 0%, 90%)'}
+					color={this.state.darkMode === true ? 'white' : 'black'}
+					backButtonColor={this.state.darkMode === true ? 'hsl(209, 23%, 22%)' : 'hsl(0, 0%, 100%)'}
 				/>
 			</div>
 		);
