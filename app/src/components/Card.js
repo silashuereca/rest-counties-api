@@ -5,9 +5,14 @@ function Card(props) {
 	let cards = props.items.map((item, i) => {
 		return (
 			<div key={i} className="sub-card-container">
-				<div onClick={props.openCard} className="country" style={{ backgroundColor: 'hsl(209, 23%, 22%)' }}>
+				<div
+					// click to open up card information
+					onClick={() => props.openCard(item)}
+					className="country"
+					style={{ backgroundColor: 'hsl(209, 23%, 22%)' }}
+				>
 					<div className="flag">
-						<img src={`${item.flag}`} />
+						<img src={`${item.flag}`} alt="country flag" />
 					</div>
 					<div className="country-title-container card-info">
 						<h4>{item.name}</h4>

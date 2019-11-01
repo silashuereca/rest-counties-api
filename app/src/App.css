@@ -1,4 +1,5 @@
 .App {
+	position: relative;
 	margin: 0;
 	width: 100%;
 	margin: auto;
@@ -130,6 +131,85 @@ p {
 	font-size: 14px;
 }
 
+/* slide in card section */
+.side-card-container {
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 60px;
+	background-color: hsl(207, 26%, 17%);
+	transition: 0.2s ease;
+}
+
+.back-button-container {
+	height: 100px;
+	width: 90%;
+	margin: auto;
+	display: flex;
+	align-items: center;
+}
+
+.back-button-container button {
+	padding: 7px 25px 7px 25px;
+	font-size: 14px;
+	color: white;
+	background-color: hsl(209, 23%, 22%);
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2), 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.arrow {
+	margin-right: 8px;
+}
+
+.sub-side-card-container {
+	width: 90%;
+	margin: auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 50px;
+}
+
+.side-card {
+	height: 550px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.side-card-flag img {
+	width: 100%;
+}
+
+.country-info-container {
+	width: 90%;
+	height: 60%;
+	margin: auto;
+}
+
+.side-card-title {
+	margin-top: 50px;
+	color: white;
+}
+
+.side-card-info-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin-top: 20px;
+	column-gap: 20px;
+}
+
+.side-card-info-container p {
+	margin-top: 6px;
+	color: white;
+}
+
+p span {
+	color: hsl(0, 0%, 80%);
+}
+
 @media only screen and (max-width: 1550px) {
 	.card-container {
 		grid-template-columns: 1fr 1fr 1fr;
@@ -144,9 +224,26 @@ p {
 	.search-container input {
 		width: 80%;
 	}
+
+	.sub-side-card-container {
+		grid-template-columns: 1fr;
+	}
+
+	.side-card {
+		height: 500px;
+		display: flex;
+		justify-content: center;
+		align-items: top;
+	}
+
+	.country-info-container {
+		width: 90%;
+		height: 100%;
+		margin: auto;
+	}
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 767px) {
 	.card-container {
 		margin-top: 100px;
 	}
@@ -170,6 +267,24 @@ p {
 
 	.select-container {
 		position: absolute;
+	}
+
+	.sub-side-card-container {
+		grid-template-columns: 1fr;
+	}
+
+	.flag-container {
+		margin-top: -75px;
+	}
+
+	.side-card {
+		height: 500px;
+	}
+
+	.country-info-container {
+		width: 100%;
+		height: 100%;
+		margin-top: -100px;
 	}
 }
 
@@ -198,5 +313,18 @@ p {
 
 	.select-container {
 		position: relative;
+	}
+
+	/* side card section */
+	.side-card-info-container {
+		grid-template-columns: 1fr;
+	}
+
+	.side-card-container {
+		overflow: scroll;
+	}
+
+	.country-info-container {
+		margin-top: -150px;
 	}
 }

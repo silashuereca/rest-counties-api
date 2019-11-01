@@ -19,6 +19,8 @@ class App extends Component {
 		receiveData: [],
 		newData: [],
 		searchInput: '',
+		cardData: [],
+		openAndClose: true,
 	};
 
 	componentDidMount() {
@@ -55,9 +57,24 @@ class App extends Component {
 		return filter;
 	};
 
-	render() {
-		console.log(this.filterItems());
+	//open card with inform with click
+	openCard = data => {
+		this.setState({
+			cardData: data,
+			openAndClose: false,
+		});
+		console.log(data.name);
+	};
 
+	//slide card back out when clicked
+	closeCard = () => {
+		this.setState({
+			openAndClose: true,
+		});
+	};
+
+	render() {
+		console.log(this.state.receiveData);
 		return (
 			<div className="App">
 				<Header />
@@ -67,8 +84,12 @@ class App extends Component {
 					options={this.state.options}
 					handleChange={this.changeRegion}
 				/>
-				<Card items={this.filterItems()} />
-				<SideCard />
+				<Card items={this.filterItems()} openCard={this.openCard} />
+				<SideCard
+					closeCard={this.closeCard}
+					data={this.state.cardData}
+					openAndClose={this.state.openAndClose == true ? '-2000px' : '0px'}
+				/>
 			</div>
 		);
 	}
