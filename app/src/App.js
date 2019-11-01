@@ -9,33 +9,35 @@ import SideCard from './components/SideCard';
 class App extends Component {
 	state = {
 		options: [
-			{ value: 'africa', label: 'Africa' },
-			{ value: 'americas', label: 'America' },
-			{ value: 'asia', label: 'Asia' },
-			{ value: 'europe', label: 'Europe' },
-			{ value: 'oceania', label: 'Oceania' },
+			{ value: 'Africa', label: 'Africa' },
+			{ value: 'Americas', label: 'America' },
+			{ value: 'Asia', label: 'Asia' },
+			{ value: 'Europe', label: 'Europe' },
+			{ value: 'Oceania', label: 'Oceania' },
 		],
-		region: 'africa',
+		region: '',
 		receiveData: [],
+		newData: [],
 		searchInput: '',
 	};
 
 	componentDidMount() {
-		fetch(`https:restcountries.eu/rest/v2/region/${this.state.region}`)
+		fetch(`https://restcountries.eu/rest/v2/all`)
 			.then(result => result.json())
 			.then(data => {
 				this.setState({ receiveData: data });
 			});
 	}
 
-	componentDidUpdate() {
-		// fetch(`https:restcountries.eu/rest/v2/region/${this.state.region}`)
-		// 	.then(result => result.json())
-		// 	.then(data => {
-		// 		this.setState({ recieveData: data });
-		// 	})
-		// 	.catch(console.log);
-	}
+	//handle change from select drop down box
+	changeRegion = option => {
+		let filterRegion = this.state.receiveData.filter(item => item.region === option.value);
+
+		this.setState({
+			region: option,
+			newData: filterRegion,
+		});
+	};
 
 	//handle different values from search box
 	handleSearchInput = e => {
@@ -44,17 +46,9 @@ class App extends Component {
 		});
 	};
 
-	//handle change from select drop down box
-	handleChange = e => {
-		this.setState({
-			region: e.target.value,
-		});
-		console.log(this.state.receiveData);
-	};
-
 	//filter out data using search
 	filterItems = () => {
-		let filter = this.state.receiveData.filter(item => {
+		let filter = this.state.newData.filter(item => {
 			return item.name.toLowerCase().includes(this.state.searchInput.toLocaleLowerCase());
 		});
 
@@ -62,7 +56,8 @@ class App extends Component {
 	};
 
 	render() {
-		console.log(this.state.region);
+		console.log(this.filterItems());
+
 		return (
 			<div className="App">
 				<Header />
@@ -70,9 +65,9 @@ class App extends Component {
 					data={this.filterItems()}
 					search={this.handleSearchInput}
 					options={this.state.options}
-					handleChange={this.handleChange}
+					handleChange={this.changeRegion}
 				/>
-				<Card />
+				<Card items={this.filterItems()} />
 				<SideCard />
 			</div>
 		);
