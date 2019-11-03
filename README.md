@@ -1,5 +1,4 @@
 # Country Search
-Using A REST API, this app fetches data from all the countries around the world.
-
-## Project Overview
-Built using React and a REST API from [Rest Countries Api Project](https://youthful-shirley-6664a6.netlify.com)
+Using A REST API, this project fetches data from [rest countries api](https://restcountries.eu/rest/v2/all) helping provide information about any country across the world. 
+## Project Overviev
+This [web application](https://youthful-shirley-6664a6.netlify.com) was built using React and react-select. The purpose of this app was to help users quickly find information about any country using a select box(for different regions) and using a search field to filter out countries.
